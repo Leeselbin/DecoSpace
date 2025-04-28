@@ -31,5 +31,7 @@ target 'DecoSpace' do
       :mac_catalyst_enabled => false,
       # :ccache_enabled => true
     )
+
+  pod 'RNScreens', :path => '../node_modules/react-native-screens'
   end
 end
