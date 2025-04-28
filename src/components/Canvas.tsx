@@ -7,8 +7,7 @@ import Furniture from './\bFurniture';
 const Canvas: React.FC = () => {
     const scale = useSharedValue(1);
     const rotation = useSharedValue(0);
-    const offsetX = useSharedValue(0);
-    const offsetY = useSharedValue(0);
+
 
     // Pinch, rotation 제스처
     const pinchGesture = Gesture.Pinch()
