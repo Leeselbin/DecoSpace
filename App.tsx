@@ -6,6 +6,8 @@ import Home from './src/screens/Home';
 import Setting from './src/screens/Setting';
 import { enableScreens } from 'react-native-screens';
 import CommonStatusBar from './src/components/CommonStatusBar';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+
 
 export type LoggedInParamList = {
   Home: undefined;
@@ -31,29 +33,31 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 function App() {
 
   return (
-    <NavigationContainer>
-      <CommonStatusBar />
-      <Tab.Navigator
-        screenOptions={{
-          //  unmountOnBlur: true,
-          tabBarShowLabel: false,
-          tabBarHideOnKeyboard: true,
-          headerShown: false,
-          tabBarStyle: [
-            {
-              borderWidth: 1,
-              // borderColor: colors.grey_300,
-              borderTopLeftRadius: 16,
-              borderTopRightRadius: 16,
-            },
-          ],
-          tabBarItemStyle: {},
-        }}>
-        <Tab.Screen name="Home" component={Home} options={{ title: '홈' }} />
-        <Tab.Screen name="Setting" component={Setting} options={{ title: '설정' }} />
+    <GestureHandlerRootView>
+      <NavigationContainer>
+        <CommonStatusBar />
+        <Tab.Navigator
+          screenOptions={{
+            //  unmountOnBlur: true,
+            tabBarShowLabel: false,
+            tabBarHideOnKeyboard: true,
+            headerShown: false,
+            tabBarStyle: [
+              {
+                borderWidth: 1,
+                // borderColor: colors.grey_300,
+                borderTopLeftRadius: 16,
+                borderTopRightRadius: 16,
+              },
+            ],
+            tabBarItemStyle: {},
+          }}>
+          <Tab.Screen name="Home" component={Home} options={{ title: '홈' }} />
+          <Tab.Screen name="Setting" component={Setting} options={{ title: '설정' }} />
 
-      </Tab.Navigator>
-    </NavigationContainer>
+        </Tab.Navigator>
+      </NavigationContainer>
+    </GestureHandlerRootView>
   );
 }
 
