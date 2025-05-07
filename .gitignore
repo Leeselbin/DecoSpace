@@ -4,33 +4,70 @@
 # VSCode
 .vscode/
 
-# Xcode
-ios/Pods/
-ios/build/
-*.xcworkspace
-*.xcodeproj/project.xcworkspace
-*.xcuserstate
-*.xcuserdata
-DerivedData/
-*.ipa
-*.hmap
-*.xcuserstate
+# Node
+node_modules/
+npm-debug.log*
+yarn-error.log
+
+# React Native
+*.jsbundle
+*.log
+.expo/
+.expo-shared/
+*.tmp
+*.temp
+*.swp
+*.swo
+*.lock-wscript
+*.patch
+*.orig
+*.rej
+*.keystore
+*.jks
+*.pem
+
+# TypeScript
+*.tsbuildinfo
+
+# Babel
+babel.config.js
+
+# Metro
+.metro-health-check*
+
+# Watchman
+.watchmanconfig
 
 # Android
 android/.gradle/
-android/build/
 android/app/build/
-*.iml
-*.keystore
-.cxx/
-.externalNativeBuild/
+android/build/
+android/.idea/
+android/captures/
+android/.cxx/
+android/local.properties
+android/*.iml
+*.hprof
 
-# React Native
-node_modules/
-npm-debug.log
-yarn-error.log
-*.jsbundle
-.metro-health-check*
+# iOS
+ios/Pods/
+ios/build/
+ios/DerivedData/
+ios/*.xcodeproj/project.xcworkspace/
+ios/*.xcworkspace/
+ios/*.xcuserdata/
+ios/*.xcuserstate
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# CocoaPods
+Podfile.lock
+
+# Ruby
+Gemfile.lock
+vendor/bundle/
 
 # Fastlane
 **/fastlane/report.xml
@@ -38,24 +75,13 @@ yarn-error.log
 **/fastlane/screenshots/
 **/fastlane/test_output/
 
-# Yarn
+# Testing
+/coverage/
+
+# Yarn (keep lock file tracked!)
 .yarn/*
-!.yarn/patches
-!.yarn/plugins
 !.yarn/releases
+!.yarn/plugins
 !.yarn/sdks
 !.yarn/versions
-
-# Testing
-/coverage
-
-# Expo
-.expo/
-.expo-shared/
-
-# Watchman
-.watchmanconfig
-
-# Env
-.env
-.env.*
+!.yarn/patches
