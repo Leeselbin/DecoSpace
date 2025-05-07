@@ -20,6 +20,7 @@
     "react-native-safe-area-context": "^5.4.0",
     "react-native-safearea-height": "^1.0.8",
     "react-native-screens": "^4.10.0",
+    "react-native-svg": "^15.11.2",
     "react-navigation-stack": "react-navigation/stack"
   },
   "devDependencies": {

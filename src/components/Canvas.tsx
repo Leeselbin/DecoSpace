@@ -1,12 +1,16 @@
 import { GestureHandlerRootView, Gesture, GestureDetector } from 'react-native-gesture-handler';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import Animated, { useSharedValue, useAnimatedStyle } from 'react-native-reanimated';
-import Furniture from './\bFurniture';
+import Animated, { useSharedValue, useAnimatedStyle, useDerivedValue, runOnJS } from 'react-native-reanimated';
+import Furniture from './Furniture';
 
 const Canvas: React.FC = () => {
     const scale = useSharedValue(1);
     const rotation = useSharedValue(0);
+
+    const [currentScale, setCurrentScale] = useState(1);
+    const [currentRotation, setCurrentRotation] = useState(0);
+
 
 
     // Pinch, rotation 제스처
@@ -19,6 +23,22 @@ const Canvas: React.FC = () => {
         .onUpdate((e) => {
             rotation.value = e.rotation;
         });
+    // SharedValue 변화 → JS로 전달
+    useDerivedValue(() => {
+        runOnJS(setCurrentScale)(scale.value);
+    }, [scale]);
+
+    useDerivedValue(() => {
+        runOnJS(setCurrentRotation)(rotation.value);
+    }, [rotation]);
+
+    useEffect(() => {
+        console.log('scale (JS):', currentScale);
+    }, [currentScale]);
+
+    useEffect(() => {
+        console.log('rotation (JS):', currentRotation);
+    }, [currentRotation]);
 
     // 캔버스는 확대/축소/회전만 처리
     const composedGesture = Gesture.Simultaneous(pinchGesture, rotationGesture);
