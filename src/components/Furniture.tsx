@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-gesture-handler';
 import Animated, { useSharedValue, useAnimatedStyle, withSpring } from 'react-native-reanimated';
 import { runOnJS } from 'react-native-reanimated';
 import FurnitureOptions from './FurnitureOptions';
 import Svg, { Polygon } from 'react-native-svg';
 
+
 interface FurnitureProps {
     initialX: number;
     initialY: number;
+    itemIndex: number;
+    showOptions: boolean[];
+    setShowOptions: React.Dispatch<React.SetStateAction<boolean[]>>;
 }
 
-const Furniture: React.FC<FurnitureProps> = ({ initialX, initialY }) => {
-    const [showOptions, setShowOptions] = useState(false);
+const Furniture: React.FC<FurnitureProps> = ({ initialX, initialY, itemIndex, showOptions, setShowOptions }) => {
     const [color, setColor] = useState('lightblue');
     const [shape, setShape] = useState<'square' | 'circle' | 'triangle' | 'star'>('square');
 
@@ -34,9 +37,15 @@ const Furniture: React.FC<FurnitureProps> = ({ initialX, initialY }) => {
             translateY.value = startY.value + e.translationY;
         });
 
+    // TODO : 타입오류 나는 이유 해결하기 근데 머가문제냐?? 
     const toggleOptions = () => {
-        setShowOptions(prev => !prev);
+        setShowOptions(prev => {
+            const clone = [...prev];
+            clone[itemIndex] = !clone[itemIndex];
+            return clone;
+        });
     };
+
 
     // Tap 제스처 (클릭해서 옵션 보이기)
     const tapGesture = Gesture.Tap()
@@ -137,7 +146,7 @@ const Furniture: React.FC<FurnitureProps> = ({ initialX, initialY }) => {
             <GestureDetector gesture={composedGesture}>
                 {getShapeComponent()}
             </GestureDetector>
-            {showOptions && (
+            {showOptions[itemIndex] && (
                 <FurnitureOptions
                     onChangeColor={changeColor}
                     onChangeShape={toggleShape}
