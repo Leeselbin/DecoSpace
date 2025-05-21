@@ -1,35 +1,46 @@
-import { View, Text, StyleSheet } from 'react-native'
-import React, { useState } from 'react'
-import Canvas from '../components/Home/Canvas'
-import HomeHeader from '../components/Home/HomeHeader'
+import {View, Text, StyleSheet} from 'react-native';
+import React, {useState} from 'react';
+import Canvas from '../components/Home/Canvas';
+import HomeHeader from '../components/Home/HomeHeader';
 
-export type GestureMode = 'idle' | 'add' | 'edit' | 'delete' | 'saving';
+export type GestureMode = 'idle' | 'add' | 'edit' | 'reset' | 'saving';
 
 const Home = () => {
-    const [gestureMode, setGestureMode] = useState<GestureMode>('idle');
+  const [gestureMode, setGestureMode] = useState<GestureMode>('idle');
 
-    const changeGestureMode = (mode: GestureMode) => {
-        setGestureMode(mode);
+  const onSaveData = () => {
+    // TODO : 저장로직 추가
+    setGestureMode('idle');
+  };
+
+  const changeGestureMode = (mode: GestureMode) => {
+    if (mode === 'saving') {
+      setGestureMode(mode);
+      setInterval(() => {
+        onSaveData();
+      }, 1000);
+    } else {
+      setGestureMode(mode);
     }
+  };
 
-    return (
-        <View style={styles.container1}>
-            <HomeHeader changeGestureMode={changeGestureMode} />
-            <Canvas gestureMode={gestureMode} />
-        </View>
-    )
-}
+  return (
+    <View style={styles.container1}>
+      <HomeHeader changeGestureMode={changeGestureMode} />
+      <Canvas gestureMode={gestureMode} />
+    </View>
+  );
+};
 
-export default Home
+export default Home;
 
 const styles = StyleSheet.create({
-
-    container1: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: '100%',
-        height: '100%',
-        backgroundColor: 'black',
-    }
-})
+  container1: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'black',
+  },
+});
