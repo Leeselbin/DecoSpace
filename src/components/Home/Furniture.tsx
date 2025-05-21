@@ -3,10 +3,11 @@ import { StyleSheet, View } from 'react-native';
 import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-gesture-handler';
 import Animated, { useSharedValue, useAnimatedStyle, withSpring } from 'react-native-reanimated';
 import { runOnJS } from 'react-native-reanimated';
-import FurnitureOptions from './FurnitureOptions';
-import Svg, { Polygon } from 'react-native-svg';
 
-interface FurnitureProps {
+import Svg, { Polygon } from 'react-native-svg';
+import FurnitureOptions from './FurnitureOptions';
+
+type FurnitureProps = {
     initialX: number;
     initialY: number;
 }

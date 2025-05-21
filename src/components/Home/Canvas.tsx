@@ -3,14 +3,22 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated, { useSharedValue, useAnimatedStyle, useDerivedValue, runOnJS } from 'react-native-reanimated';
 import Furniture from './Furniture';
+import { GestureMode } from '../../screens/Home';
 
-const Canvas: React.FC = () => {
+type Props = {
+    gestureMode: GestureMode;
+}
+
+const Canvas: React.FC<Props> = ({ gestureMode }) => {
     const scale = useSharedValue(1);
     const rotation = useSharedValue(0);
+    const [currentScale, setCurrentScale] = useState<number>(1);
+    const [currentRotation, setCurrentRotation] = useState<number>(0);
 
-    const [currentScale, setCurrentScale] = useState(1);
-    const [currentRotation, setCurrentRotation] = useState(0);
-
+    const [furnitureList, setFurnitureList] = useState([
+        { id: '1', x: 0, y: 0 },
+        { id: '2', x: 100, y: 100 },
+    ]);
 
 
     // Pinch, rotation 제스처
@@ -55,8 +63,13 @@ const Canvas: React.FC = () => {
         <GestureHandlerRootView style={styles.container}>
             <GestureDetector gesture={composedGesture}>
                 <Animated.View style={[styles.canvas, animatedCanvasStyle]}>
-                    <Furniture initialX={0} initialY={0} />
-                    <Furniture initialX={100} initialY={100} />
+
+                    {furnitureList && furnitureList.map((item, index) => {
+                        return (
+                            <Furniture key={'furniture' + item.id} initialX={item.x} initialY={item.y} />
+                        )
+                    })}
+
                 </Animated.View>
             </GestureDetector>
         </GestureHandlerRootView>
@@ -71,7 +84,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         width: '100%',
-        height: '100%',
+        top: '10%',
+        height: '90%',
         flex: 1,
         borderWidth: 0,
     },

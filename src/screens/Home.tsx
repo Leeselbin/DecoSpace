@@ -1,11 +1,21 @@
 import { View, Text, StyleSheet } from 'react-native'
-import React from 'react'
-import Canvas from '../components/Canvas'
+import React, { useState } from 'react'
+import Canvas from '../components/Home/Canvas'
+import HomeHeader from '../components/Home/HomeHeader'
+
+export type GestureMode = 'idle' | 'add' | 'edit' | 'delete' | 'saving';
 
 const Home = () => {
+    const [gestureMode, setGestureMode] = useState<GestureMode>('idle');
+
+    const changeGestureMode = (mode: GestureMode) => {
+        setGestureMode(mode);
+    }
+
     return (
         <View style={styles.container1}>
-            <Canvas />
+            <HomeHeader changeGestureMode={changeGestureMode} />
+            <Canvas gestureMode={gestureMode} />
         </View>
     )
 }

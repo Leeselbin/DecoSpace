@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-interface FurnitureOptionsProps {
+type FurnitureOptionsProps = {
     isVisible: boolean;
     onClose: () => void;
     onRotate90: () => void;
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         borderRadius: 12,
         padding: 20,
-        width: '80%',
+        width: '60%',
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.3,
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     },
     optionButton: {
         backgroundColor: '#4F46E5',
-        paddingVertical: 10,
+        paddingVertical: 8,
         paddingHorizontal: 16,
         borderRadius: 8,
         marginVertical: 6,
