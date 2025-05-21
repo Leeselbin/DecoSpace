@@ -7,8 +7,6 @@ const GridBackground: React.FC = () => {
   const onLayout = (event: LayoutChangeEvent) => {
     const {width, height} = event.nativeEvent.layout;
 
-    console.log('width :', width);
-    console.log('width :', height);
     setSize({width, height});
   };
 

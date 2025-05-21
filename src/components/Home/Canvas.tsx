@@ -63,6 +63,14 @@ const Canvas: React.FC<Props> = ({gestureMode}) => {
     transform: [{scale: scale.value}, {rotateZ: `${rotation.value}rad`}],
   }));
 
+  useEffect(() => {
+    if (gestureMode && gestureMode === 'reset') {
+      console.log('gestureMode :', gestureMode);
+      scale.value = 1;
+      rotation.value = 0;
+    }
+  }, [gestureMode]);
+
   return (
     <GestureHandlerRootView style={styles.container}>
       <GestureDetector gesture={composedGesture}>
