@@ -42,9 +42,9 @@ const styles = StyleSheet.create({
   },
   line: {
     position: 'absolute',
-    backgroundColor: 'rgba(0,0,0,0.1)', // 연한 검정색 (투명도 10%)
-    width: 0.5,
-    height: 0.5,
+    backgroundColor: 'rgba(0,0,0,0.4)', // 연한 검정색 (투명도 10%)
+    width: 1,
+    height: 1,
   },
 });
 

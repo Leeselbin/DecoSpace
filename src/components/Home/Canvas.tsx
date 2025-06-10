@@ -69,6 +69,7 @@ const Canvas: React.FC<Props> = ({gestureMode}) => {
       scale.value = 1;
       rotation.value = 0;
     }
+    console.log('gestureMode :', gestureMode);
   }, [gestureMode]);
 
   return (

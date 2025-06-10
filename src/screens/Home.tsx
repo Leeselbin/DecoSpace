@@ -2,6 +2,7 @@ import {View, Text, StyleSheet} from 'react-native';
 import React, {useState} from 'react';
 import Canvas from '../components/Home/Canvas';
 import HomeHeader from '../components/Home/HomeHeader';
+import FurniturePanel from '../components/Home/FurniturePanel';
 
 export type GestureMode = 'idle' | 'add' | 'edit' | 'reset' | 'saving';
 
@@ -14,11 +15,9 @@ const Home = () => {
   };
 
   const changeGestureMode = (mode: GestureMode) => {
+    console.log('input Mode :', mode);
     if (mode === 'saving') {
       setGestureMode(mode);
-      setInterval(() => {
-        onSaveData();
-      }, 1000);
     } else {
       setGestureMode(mode);
     }
@@ -28,6 +27,11 @@ const Home = () => {
     <View style={styles.container1}>
       <HomeHeader changeGestureMode={changeGestureMode} />
       <Canvas gestureMode={gestureMode} />
+
+      <FurniturePanel
+        visible={gestureMode === 'add'}
+        onClose={() => setGestureMode('idle')}
+      />
     </View>
   );
 };
